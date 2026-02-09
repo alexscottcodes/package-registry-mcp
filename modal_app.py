@@ -13,7 +13,7 @@ app = modal.App("package-registry-mcp")
 # Define the container image with Node.js runtime
 image = (
     modal.Image.debian_slim(python_version="3.11")
-    .apt_install("curl", "nodejs", "npm", "git")
+    .apt_install("curl", "nodejs", "npm", "git", "zip", "unzip")
     .run_commands(
         # Install Node.js 22.x (required by the project)
         "curl -fsSL https://deb.nodesource.com/setup_22.x | bash -",
