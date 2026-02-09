@@ -1,0 +1,50 @@
+# Modal ignore file - excludes files from Modal deployment
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+out/
+*.tgz
+
+# Tests
+*.test.ts
+*.test.js
+__mocks__/
+coverage/
+
+# Documentation (not needed in deployment)
+*.md
+!README.md
+
+# Git
+.git/
+.github/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Env files
+.env
+.env.*
+
+# Cache
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# Misc
+react-example.save
+test-http-server.sh

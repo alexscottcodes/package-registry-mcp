@@ -27,6 +27,17 @@ up-to-date package information.
 
 ## Getting Started
 
+### Deployment Options
+
+This server can be run in two ways:
+
+1. **Local (stdio)**: Run locally and connect via standard input/output
+   (traditional MCP setup)
+2. **Remote (HTTP)**: Deploy to Modal.com and connect via HTTPS (new!)
+
+For remote deployment instructions, see
+[MODAL_DEPLOYMENT.md](./MODAL_DEPLOYMENT.md).
+
 ### Cursor
 
 [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=package-registry&config=eyJjb21tYW5kIjoibnB4IHBhY2thZ2UtcmVnaXN0cnktbWNwIn0%3D)
