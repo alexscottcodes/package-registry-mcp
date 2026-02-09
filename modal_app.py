@@ -10,24 +10,35 @@ import modal
 # Create a Modal app
 app = modal.App("package-registry-mcp")
 
-# Define the container image with Bun runtime
+# Define the container image with Node.js runtime
 image = (
     modal.Image.debian_slim(python_version="3.11")
-    .apt_install("curl", "unzip")
+    .apt_install("curl", "nodejs", "npm", "git")
     .run_commands(
-        # Install Bun
-        "curl -fsSL https://bun.sh/install | bash",
-        "ln -s /root/.bun/bin/bun /usr/local/bin/bun",
+        # Install Node.js 22.x (required by the project)
+        "curl -fsSL https://deb.nodesource.com/setup_22.x | bash -",
+        "apt-get install -y nodejs",
         # Verify installation
-        "bun --version",
+        "node --version",
+        "npm --version",
     )
     .add_local_dir("src", "/app/src", copy=True)
     .add_local_file("package.json", "/app/package.json", copy=True)
-    .add_local_file("tsconfig.json", "/app/tsconfig.json", copy=True)
+    .add_local_file("bun.lock", "/app/bun.lock", copy=True)
     .workdir("/app")
     .run_commands(
-        # Install dependencies
-        "bun install --production",
+        # Install Bun for building
+        "curl -fsSL https://bun.sh/install | bash",
+        "export PATH=\"/root/.bun/bin:$PATH\"",
+        "ln -sf /root/.bun/bin/bun /usr/local/bin/bun",
+        # Verify Bun installation
+        "bun --version",
+        # Install all dependencies (including devDependencies for building)
+        "bun install",
+        # Build the project
+        "bun run build",
+        # Verify the build output
+        "ls -la /app/dist/",
     )
 )
 
@@ -52,8 +63,8 @@ def mcp_server():
     """
     import subprocess
 
-    # Start the Bun server
+    # Start the Node.js server
     subprocess.Popen(
-        ["bun", "run", "/app/src/http-server.ts"],
+        ["node", "/app/dist/http-server.js"],
         env={"PORT": "3000"},
     )
