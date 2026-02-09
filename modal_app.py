@@ -21,9 +21,9 @@ image = (
         # Verify installation
         "bun --version",
     )
-    .add_local_dir("src", "/app/src")
-    .add_local_file("package.json", "/app/package.json")
-    .add_local_file("tsconfig.json", "/app/tsconfig.json")
+    .add_local_dir("src", "/app/src", copy=True)
+    .add_local_file("package.json", "/app/package.json", copy=True)
+    .add_local_file("tsconfig.json", "/app/tsconfig.json", copy=True)
     .workdir("/app")
     .run_commands(
         # Install dependencies
