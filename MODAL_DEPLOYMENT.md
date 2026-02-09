@@ -47,12 +47,6 @@ your preference.
 modal deploy modal_app.py
 ```
 
-**Option B: ASGI with proxy**
-
-```bash
-modal deploy modal_app_asgi.py
-```
-
 This command will:
 
 - Build a container with Bun runtime
