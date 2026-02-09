@@ -37,6 +37,7 @@
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target node --format esm",
     "format": "bun prettier --write .",
+    "http": "bun run src/http-server.ts",
     "lint": "eslint src/",
     "prepublishOnly": "npm run build",
     "test": "vitest",
@@ -45,12 +46,14 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.23.0",
+    "express": "^4.21.2",
     "zod": "^3.25.0"
   },
   "peerDependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/bun": "latest",
+    "@types/express": "^5.0.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "msw": "^2.12.3",
