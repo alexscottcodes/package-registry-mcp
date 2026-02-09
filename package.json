@@ -35,7 +35,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node --format esm",
+    "build": "bun build src/index.ts --outdir dist --target node --format esm && bun build src/http-server.ts --outfile dist/http-server.js --target node --format esm",
     "format": "bun prettier --write .",
     "http": "bun run src/http-server.ts",
     "lint": "eslint src/",
